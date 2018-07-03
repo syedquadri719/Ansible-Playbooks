@@ -15,11 +15,11 @@
          dest: "/agent/"
          owner: abc
          group: abc
-		 
+	 
     - name: Taking backup
       get_url:
       command: "mv /fullpath/config /fullpath/config_backup"
-	  
+      
     - name: Untar the package
       unarchive:
          remote_src: yes
