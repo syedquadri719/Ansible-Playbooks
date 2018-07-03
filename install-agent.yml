@@ -1,0 +1,37 @@
+---
+- name: Download and Install Agent
+  hosts: xyz
+  gather_facts: True
+  vars:
+      ansible_user: ssh-username
+      ansible_password: ssh-password
+  tasks:
+    - name: Moving the TAR file to OlD_BUILDS Directory..
+      command: "mv /fullpath/build.tar.gz /fullpath/old_builds/"
+
+    - name: Downloading the new package..
+      get_url:
+         url: "http://yoururl/build.tar.gz"
+         dest: "/agent/"
+         owner: abc
+         group: abc
+		 
+    - name: Taking backup
+      get_url:
+      command: "mv /fullpath/config /fullpath/config_backup"
+	  
+    - name: Untar the package
+      unarchive:
+         remote_src: yes
+         src: "/agent/build.tar.gz"
+         dest: "/agent/"
+      become: yes
+	  become_user: abc
+	  
+    - name: Starting Agent
+	  shell: "./bin/start-agent.sh"
+	  args:
+	     executable: /bin/bash/
+		 chdir: "/agent/"
+	  become: yes
+	  become_user: abc
