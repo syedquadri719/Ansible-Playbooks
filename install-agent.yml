@@ -15,7 +15,7 @@
          dest: "/agent/"
          owner: abc
          group: abc
-	 
+
     - name: Taking backup
       get_url:
       command: "mv /fullpath/config /fullpath/config_backup"
@@ -26,12 +26,12 @@
          src: "/agent/build.tar.gz"
          dest: "/agent/"
       become: yes
-	  become_user: abc
-	  
+      become_user: abc
+      
     - name: Starting Agent
-	  shell: "./bin/start-agent.sh"
+          shell: "./bin/start-agent.sh"
 	  args:
-	     executable: /bin/bash/
+	         executable: /bin/bash/
 		 chdir: "/agent/"
 	  become: yes
 	  become_user: abc
