@@ -29,9 +29,9 @@
       become_user: abc
       
     - name: Starting Agent
-          shell: "./bin/start-agent.sh"
-	  args:
-	     executable: /bin/bash/
-	     chdir: "/agent/"
+      shell: "./bin/start-agent.sh"
+      args:
+	 executable: /bin/bash/
+	 chdir: "/agent/"
       become: yes
       become_user: abc
